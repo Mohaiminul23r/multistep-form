@@ -35,7 +35,13 @@ class StudentController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $student = new Student([
+            'first_name' => $request->get('first_name'),
+            'last_name' => $request->get('last_name'),
+            'contact_no' => $request->get('contact_no'),
+            'email' => $request->get('email')
+        ]);
+        $student->save();
     }
 
     /**
