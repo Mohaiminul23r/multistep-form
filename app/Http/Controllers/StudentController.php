@@ -14,7 +14,8 @@ class StudentController extends Controller
      */
     public function index()
     {
-        //
+        $students = Student::all();
+        return view('welcome')->with('students', $students);
     }
 
     /**
@@ -35,6 +36,9 @@ class StudentController extends Controller
      */
     public function store(Request $request)
     {
+        //dd($request);
+        $students = Student::all();
+        //dd($students);
         $student = new Student([
             'first_name' => $request->get('first_name'),
             'last_name' => $request->get('last_name'),
@@ -42,6 +46,7 @@ class StudentController extends Controller
             'email' => $request->get('email')
         ]);
         $student->save();
+        return redirect('/student')->with('students', $students)->with('success', 'Student has been added successfully');
     }
 
     /**
